@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <h1 class="logo">
+            <span class="logo-icon">📝</span>
+            <span class="logo-text">NOTES</span>
+        </h1>
+
+        <p class="note-count">
+            <svg class="count-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="5" y="3" width="14" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M9 8h6M9 12h6M9 16h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <span>Всего заметок:</span>
+            <span id="note-count">0</span>
+        </p>
+    </header>
+
+    <main class="main">
+
+        <form class="note-form" name="notes" novalidate>
+
+            <div class="title-field">
+                <label for="note-title">Название заметки</label>
+                <input
+                    id="note-title"
+                    type="text"
+                    name="title"
+                    placeholder="Напишите название новой заметки..."
+                    required
+                >
+            </div>
+
+            <fieldset class="color-field">
+                <legend>Выберите цвет заметки</legend>
+
+                <div class="color-options">
+                    <label class="color-option">
+                        <input type="radio" name="color" value="red">
+                        <span class="color-circle red"></span>
+                    </label>
+
+                    <label class="color-option">
+                        <input type="radio" name="color" value="green">
+                        <span class="color-circle green"></span>
+                    </label>
+
+                    <label class="color-option">
+                        <input type="radio" name="color" value="blue">
+                        <span class="color-circle blue"></span>
+                    </label>
+
+                    <label class="color-option">
+                        <input type="radio" name="color" value="yellow" checked>
+                        <span class="color-circle yellow"></span>
+                    </label>
+
+                    <label class="color-option">
+                        <input type="radio" name="color" value="purple">
+                        <span class="color-circle purple"></span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <div class="description-field">
+                <label for="note-content">Описание новой заметки</label>
+                <textarea
+                    id="note-content"
+                    name="content"
+                    placeholder="Напишите описание новой заметки..."
+                    required
+                ></textarea>
+            </div>
+
+            <button class="add-button" type="submit">
+                Добавить заметку
+            </button>
+
+        </form>
+
+        <div class="filter-row">
+            <label class="favorite-filter">
+                <input type="checkbox" id="favorite-filter">
+                <span>Показать только избранные заметки</span>
+            </label>
+        </div>
+
+        <ul class="notes-list"></ul>
+
+        <div class="messages-box" aria-live="polite"></div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

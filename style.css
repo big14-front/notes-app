@@ -1,0 +1,540 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    color: #222222;
+    background: #f7f8fa;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+/* Шапка */
+
+.header {
+    min-height: 76px;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.logo {
+    color: #6366d9;
+}
+
+.logo-text {
+    color: #6366d9;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.logo-icon {
+    color: initial;
+    text-decoration: none;
+}
+
+.note-count {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    margin: 0;
+    color: #555555;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.count-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: #555555;
+}
+
+/* Основная область */
+
+.main {
+    width: calc(100% - 80px);
+    max-width: 1280px;
+    margin: 32px auto 50px;
+}
+
+/* Форма создания заметки */
+
+.note-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 232px;
+    grid-template-rows: auto auto auto;
+    gap: 24px;
+    padding: 24px;
+    background: #ffffff;
+    border: 1px solid #e7e9ee;
+    border-radius: 12px;
+}
+
+.title-field {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+}
+
+.title-field label,
+.description-field label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.title-field input {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+    border: 1px solid #dfe2e8;
+    border-radius: 7px;
+    outline: none;
+    background: #ffffff;
+    color: #222222;
+    font-size: 13px;
+}
+
+.title-field input:focus,
+.description-field textarea:focus {
+    border-color: #8b8be8;
+}
+
+.title-field input::placeholder,
+.description-field textarea::placeholder {
+    color: #999999;
+}
+
+/* Выбор цвета */
+
+.color-field {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.color-field legend {
+    margin-bottom: 16px;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.color-options {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.color-option {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.color-option input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.color-circle {
+    display: block;
+    width: 27px;
+    height: 27px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+.color-option input:checked + .color-circle {
+    outline-color: #555555;
+}
+
+.color-option input:focus-visible + .color-circle {
+    outline-color: #222222;
+}
+
+.red {
+    background: #ff6b6b;
+}
+
+.green {
+    background: #51cf66;
+}
+
+.blue {
+    background: #4dabf7;
+}
+
+.yellow {
+    background: #ffd43b;
+}
+
+.purple {
+    background: #9775fa;
+}
+
+.description-field {
+    grid-column: 1;
+    grid-row: 2;
+    min-width: 0;
+}
+
+.description-field textarea {
+    display: block;
+    width: 100%;
+    min-height: 112px;
+    padding: 12px 14px;
+    resize: vertical;
+    border: 1px solid #dfe2e8;
+    border-radius: 7px;
+    outline: none;
+    background: #ffffff;
+    color: #222222;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+.note-form .add-button {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: end;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 16px;
+    border: 0;
+    border-radius: 7px;
+    background: #6366d9;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.note-form .add-button:hover {
+    background: #5053c5;
+}
+
+.note-form .add-button:active {
+    transform: translateY(1px);
+}
+
+
+.filter-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 24px 0;
+}
+
+.favorite-filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #444444;
+}
+
+.favorite-filter input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: #6366d9;
+    cursor: pointer;
+}
+
+.notes-list {
+    display: grid;
+    grid-template-columns: repeat(2, 368px);
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.note-card {
+    width: 368px;
+    height: 216px;
+    box-sizing: border-box;
+    overflow: hidden;
+    border: 1px solid #e7e9ee;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+
+.note-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 60px;
+    padding: 14px 18px;
+}
+
+.note-card-title {
+    min-width: 0;
+    margin: 0;
+    overflow-wrap: anywhere;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.note-card-actions {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 12px;
+}
+
+.note-card-actions button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.note-card-actions button img {
+    display: block;
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
+.note-card-actions button:hover {
+    opacity: 0.7;
+}
+
+.note-card-body {
+    height: calc(100% - 60px);
+    overflow: auto;
+    padding: 16px 18px;
+}
+
+.note-card-content {
+    margin: 0;
+    overflow-wrap: anywhere;
+    color: #555555;
+    font-size: 13px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+
+.messages-box {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+    width: max-content;
+    max-width: calc(100vw - 40px);
+    pointer-events: none;
+}
+
+.message {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 24px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    overflow-wrap: anywhere;
+}
+
+.message.error {
+    width: 427px;
+    background: #e03131;
+}
+
+.message.success {
+    width: 230px;
+    background: #2f9e44;
+}
+
+.message-icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+.message span {
+    min-width: 0;
+}
+
+/* Планшеты */
+
+@media (max-width: 900px) {
+    .header {
+        padding: 18px 24px;
+    }
+
+    .main {
+        width: calc(100% - 48px);
+    }
+
+    .note-form {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .title-field,
+    .color-field,
+    .description-field,
+    .note-form .add-button {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .note-form .add-button {
+        justify-self: start;
+        max-width: 300px;
+    }
+
+    .notes-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Телефоны */
+
+@media (max-width: 600px) {
+    .header {
+        min-height: 68px;
+        padding: 16px;
+        gap: 10px;
+    }
+
+    .logo {
+        gap: 7px;
+        font-size: 19px;
+    }
+
+    .logo-icon {
+        font-size: 21px;
+    }
+
+    .note-count {
+        gap: 5px;
+        font-size: 11px;
+    }
+
+    .count-icon {
+        width: 17px;
+        height: 17px;
+    }
+
+    .main {
+        width: calc(100% - 32px);
+        margin-top: 20px;
+    }
+
+    .note-form {
+        gap: 20px;
+        padding: 16px;
+    }
+
+    .note-form .add-button {
+        width: 100%;
+        max-width: none;
+    }
+
+    .description-field textarea {
+        min-height: 108px;
+    }
+
+    .filter-row {
+        margin: 16px 0 20px;
+    }
+
+    .favorite-filter {
+        align-items: flex-start;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .notes-list {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .note-card {
+        height: 216px;
+    }
+
+    .messages-box {
+        right: 16px;
+        bottom: 16px;
+        width: calc(100vw - 32px);
+        max-width: calc(100vw - 32px);
+        gap: 12px;
+    }
+
+    .message.error,
+    .message.success {
+        width: 100%;
+        max-width: 100%;
+        padding: 12px 16px;
+    }
+}
+
+@media (max-width: 360px) {
+    .logo {
+        font-size: 17px;
+    }
+
+    .note-count {
+        font-size: 10px;
+    }
+
+    .header {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+}
